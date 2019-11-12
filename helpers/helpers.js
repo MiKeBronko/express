@@ -1,37 +1,42 @@
 const fs = require('fs');
 
 const usersJson = require('../data/users.json');
+// const cardsJson = require('../data/cards.json');
 
-const readUsers = (fileName) => {
-  return new Promise((resolve, reject) => {
-    fs.readFile(fileName, 'utf8', (err, data) => {
-      if (err) {
-        return reject(err);
-      }
-      return resolve(data);
-    });
+const readFile = (fileName) => new Promise((resolve, reject) => {
+  fs.readFile(fileName, 'utf8', (err, data) => {
+    if (err) {
+      return reject(err);
+    }
+    return resolve(data);
   });
-};
+});
 
 const resUsers = async (req, res) => {
-  const data = await readUsers('./data/users.json');
+  const data = await readFile('./data/users.json');
+  // const data1 = await readFile('./data/cards.json');
+  res.send(data);
+};
+
+const resCards = async (req, res) => {
+  const data = await readFile('./data/cards.json');
   res.send(data);
 };
 
 const findUser = (req, res) => {
   const { id } = req.params;
-  const user = usersJson.find(user => {
-    return user._id === id;
-  });
+  const user = usersJson.find((item) => item._id === id);
+  // console.log(`${item}"._"${id}`);
   if (user) {
     res.send(user);
   } else {
-    res.status(404).send({"message": "Нет пользователя с таким id"});
+    res.status(404).send('{"message": "Нет пользователя с таким id"}');
   }
 };
 
 
 module.exports = {
+  resCards,
   resUsers,
   findUser,
 };
