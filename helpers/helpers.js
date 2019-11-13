@@ -22,8 +22,8 @@ const resCards = async (req, res) => {
 };
 
 const findUser = (req, res) => {
-  const { _id } = req.params;
-  const user = usersJson.find((item) => item.id === _id);
+  const { id } = req.params;
+  const user = usersJson.find(({ _id: item }) => item === id);
   if (user) {
     res.send(user);
   } else {
