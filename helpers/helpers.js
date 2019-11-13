@@ -22,15 +22,14 @@ const resCards = async (req, res) => {
 };
 
 const findUser = (req, res) => {
-  const { id } = req.params;
-  const user = usersJson.find((item) => item._id === id);
+  const { _id } = req.params;
+  const user = usersJson.find((item) => item.id === _id);
   if (user) {
     res.send(user);
   } else {
     res.status(404).send('{"message": "Нет пользователя с таким id"}');
   }
 };
-
 
 module.exports = {
   resCards,
