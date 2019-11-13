@@ -1,7 +1,6 @@
 const fs = require('fs');
 
 const usersJson = require('../data/users.json');
-// const cardsJson = require('../data/cards.json');
 
 const readFile = (fileName) => new Promise((resolve, reject) => {
   fs.readFile(fileName, 'utf8', (err, data) => {
@@ -14,7 +13,6 @@ const readFile = (fileName) => new Promise((resolve, reject) => {
 
 const resUsers = async (req, res) => {
   const data = await readFile('./data/users.json');
-  // const data1 = await readFile('./data/cards.json');
   res.send(data);
 };
 
@@ -26,7 +24,6 @@ const resCards = async (req, res) => {
 const findUser = (req, res) => {
   const { id } = req.params;
   const user = usersJson.find((item) => item._id === id);
-  // console.log(`${item}"._"${id}`);
   if (user) {
     res.send(user);
   } else {

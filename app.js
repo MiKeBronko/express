@@ -4,7 +4,7 @@ const app = express();
 
 const path = require('path');
 
-const router = require('./routes/index.js'); // импортируем роутер
+const router = require('./routes/index.js');
 
 
 const { PORT = 3000 } = process.env;
