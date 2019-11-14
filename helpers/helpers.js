@@ -23,11 +23,12 @@ const resCards = async (req, res) => {
 
 const findUser = (req, res) => {
   const { id } = req.params;
+  // const users = JSON.parse(data);
   const user = usersJson.find(({ _id: item }) => item === id);
   if (user) {
     res.send(user);
   } else {
-    res.status(404).send('{"message": "Нет пользователя с таким id"}');
+    res.status(404).send({ message: 'Нет пользователя с таким id' });
   }
 };
 
